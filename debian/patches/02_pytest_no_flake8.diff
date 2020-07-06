@@ -1,0 +1,10 @@
+# remove flake8, black, and cov options from pytest.ini
+--- a/pytest.ini
++++ b/pytest.ini
+@@ -1,5 +1,5 @@
+ [pytest]
+ norecursedirs=dist build .tox .eggs
+-addopts=--doctest-modules --flake8 --black --cov
++addopts=--doctest-modules
+ doctest_optionflags=ALLOW_UNICODE ELLIPSIS
+ filterwarnings=

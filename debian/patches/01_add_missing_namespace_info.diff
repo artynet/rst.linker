@@ -1,0 +1,25 @@
+# turn rst.linker into a namespace package to avoid filename
+# collisions with other rst subpackages such as .itertools
+Index: python-rst.linker-2.0/setup.py
+===================================================================
+--- python-rst.linker-2.0.orig/setup.py
++++ python-rst.linker-2.0/setup.py
+@@ -3,4 +3,4 @@
+ import setuptools
+ 
+ if __name__ == "__main__":
+-    setuptools.setup(use_scm_version=True)
++    setuptools.setup(use_scm_version=True, namespace_packages=['rst'], packages=setuptools.find_packages())
+Index: python-rst.linker-2.0/rst/__init__.py
+===================================================================
+--- python-rst.linker-2.0.orig/rst/__init__.py
++++ python-rst.linker-2.0/rst/__init__.py
+@@ -1 +1,8 @@
++try:
++    # the pkg_resources stanza seems necessary for setuptools
++    # which errors out if it's missing, although the namespace
++    # mechanism should work just fine without it
++    __import__('pkg_resources').declare_namespace(__name__)
++except ImportError:
++    pass
+ __path__ = __import__('pkgutil').extend_path(__path__, __name__)  # noqa

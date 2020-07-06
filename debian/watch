@@ -1,0 +1,4 @@
+version=3
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/python-jaraco.functools-$1\.tar\.gz/ \
+ https://github.com/jaraco/jaraco.functools/tags \
+ .*/jaraco.functools/archive/v?([\d\.]+)\.tar\.gz
